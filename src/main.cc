@@ -1,6 +1,7 @@
 #include <aux.h>
 
 int main() {
-  aux::do_work();
+	aux::Aux aux;
+	aux.foo();
   return 0;
 }
