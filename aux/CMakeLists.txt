@@ -6,17 +6,6 @@ target_sources(AuxLib
 	aux.cc
 )
 
-qt_wrap_cpp(MOC_SOURCES
-	aux.h
-	TARGET
-	AuxLib
-)
-
-target_sources(AuxLib
-	PRIVATE
-	${MOC_SOURCES}
-)
-
 target_include_directories(AuxLib
 	INTERFACE
 	${CMAKE_CURRENT_LIST_DIR}
@@ -38,3 +27,16 @@ target_link_libraries(AuxLib
 	PRIVATE
 	CoreLib
 )
+
+if (NOT ENABLE_AUTOMOC)
+	qt_wrap_cpp(MOC_SOURCES
+		aux.h
+		TARGET
+		AuxLib
+	)
+
+	target_sources(AuxLib
+		PRIVATE
+		${MOC_SOURCES}
+	)
+endif()

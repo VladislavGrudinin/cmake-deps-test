@@ -25,14 +25,16 @@ target_link_libraries(CoreLib
 	Qt5::Core
 )
 
-qt_wrap_cpp(MOC_SOURCES
-	core.h
-	file1.h
-	file2.h
-	TARGET CoreLib
-)
+if (NOT ENABLE_AUTOMOC)
+	qt_wrap_cpp(MOC_SOURCES
+		core.h
+		file1.h
+		file2.h
+		TARGET CoreLib
+	)
 
-target_sources(CoreLib
-	PRIVATE
-	${MOC_SOURCES}
-)
+	target_sources(CoreLib
+		PRIVATE
+		${MOC_SOURCES}
+	)
+endif()
