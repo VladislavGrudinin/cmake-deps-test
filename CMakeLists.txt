@@ -1,14 +1,14 @@
 cmake_minimum_required(VERSION 3.16)
 
-set(CMAKE_ADD_CUSTOM_COMMAND_DEPENDS_EXPLICIT_ONLY ON)
-
 project(DepTest LANGUAGES CXX)
+
+include(cmake/cmSources.cmake)
 
 find_package(Qt5 COMPONENTS Core)
 
-option(ENABLE_AUTMOC "" ON)
+option(ENABLE_AUTOMOC "" ON)
 
-if (ENABLE_AUTMOC)
+if (ENABLE_AUTOMOC)
 	set(CMAKE_AUTOMOC TRUE)
 endif()
 

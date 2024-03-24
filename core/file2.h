@@ -1,10 +1,7 @@
 #pragma once
 
-#include <QObject>
-
 namespace core {
-class File2 : public QObject {
-  Q_OBJECT
+class File2 {
 public:
   void foo();
 };

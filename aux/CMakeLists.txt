@@ -1,10 +1,17 @@
 add_library(AuxLib OBJECT)
 
-target_sources(AuxLib
-	PRIVATE
-	aux.h
-	aux.cc
-)
+if (ENABLE_AUTOMOC)
+	target_sources(AuxLib
+		PRIVATE
+		aux.h
+		aux.cc
+	)
+else()
+	SOURCES(AuxLib
+		aux.h
+		aux.cc
+	)
+endif()
 
 target_include_directories(AuxLib
 	INTERFACE
@@ -27,16 +34,3 @@ target_link_libraries(AuxLib
 	PRIVATE
 	CoreLib
 )
-
-if (NOT ENABLE_AUTOMOC)
-	qt_wrap_cpp(MOC_SOURCES
-		aux.h
-		TARGET
-		AuxLib
-	)
-
-	target_sources(AuxLib
-		PRIVATE
-		${MOC_SOURCES}
-	)
-endif()
